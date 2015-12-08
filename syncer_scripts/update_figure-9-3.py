@@ -184,9 +184,9 @@ def update(url):
     dataset_id = "nasa-modis-rapid-response-system"
     href = "/dataset/"
     update_url = "%s%s"%(url,href)
-#    check_url = "%s%s"%(update_url, dataset_id)
-#    if requests.get(check_url, verify=False).status_code == 200:
-#        update_url = check_url
+    check_url = "%s%s"%(update_url, dataset_id)
+    if requests.get(check_url, verify=False).status_code == 200:
+        update_url = check_url
     data = {
             'identifier': dataset_id,
             'description': "NASA MODIS Rapid Response System",
