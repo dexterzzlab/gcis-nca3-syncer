@@ -83,7 +83,7 @@ def update(url):
         update_url = check_url
     data = {
             'identifier': act_id,
-            'methodology': "xxx copied the input image and placed a star to mark Baltimore, MD and highlighted fire locations in Quebec.",
+            'methodology': "A star was inserted to mark Baltimore, MD. Fire locations were highlighted in Quebec.",
             'output_artifacts': "http://earthobservatory.nasa.gov/NaturalHazards/view.php?id=9826",
     }
     r = gcis.s.post(update_url, data=json.dumps(data), verify=False)
@@ -147,6 +147,7 @@ def update(url):
         update_url = check_url
     data = {
             'identifier': act_id,
+            'data_usage': "According to the metadata at Figure 16.3 \"Flooding and Hurricane Irene\", the image was created on March 4, 2014. According to PGE Version History in MODAPS (http://modaps.nascom.nasa.gov/services/production/ops_versions.html), L1B Calibration (which produces MOD021KM product) PGE was version 5.0.46_70 based on production date and data acquisition date.",
             'methodology': "The two input images are processed to corrected reflectance images by a process described in the document https://earthdata.nasa.gov/files/MODIS_True_Color.pdf. Also, to generate the two images on the Rapid Response System, the two corresponding granules of the MODIS fire product are overlaid. When the images were generated in 2002, a system at University of Maryland was being used for the MODIS fire products. That system used an algorithm identical to the one used for the MODIS product MOD14 (Thermal Anomalies - Fires and Biomass Burning) which is currently available from Land Processes (LP) DAAC. The two granules can be obtained from LP DAAC using the links: http://e4ftl01.cr.usgs.gov//MODIS_Dailies_C/MOLT/MOD14.005/2002.07.07/MOD14.A2002188.1630.005.2011273181127.hdf and http://e4ftl01.cr.usgs.gov//MODIS_Dailies_C/MOLT/MOD14.005/2002.07.07/MOD14.A2002188.1635.005.2011273181055.hdf.It is to be noted that there may be very slight differences in the geolocation of the fires between these granules and the ones on the Rapid Response System due to the use of predictive ephemeris in the latter vs definitive ephemeris in the former. (Use of predictive ephemeris is standard practice for near real-time products because of the latency constraints.)Details about the MODIS fire products can be found in https://earthdata.nasa.gov/files/MODIS_Fire_Users_Guide_2.5.pdf. The Algorithm Theoretical Basis Document for MOD14 is at http://modis.gsfc.nasa.gov/data/atbd/atbd_mod14.pdf.",
             'output_artifacts': "Two images in NASA's MODIS Rapid Response System http://lance-modis.eosdis.nasa.gov/cgi-bin/imagery/single.cgi?image=Canada.A2002188.1635.2km.jpg and http://lance-modis.eosdis.nasa.gov/cgi-bin/imagery/single.cgi?image=EastCoast.A2002188.1635.1km.jpg",
     }
@@ -183,9 +184,9 @@ def update(url):
     dataset_id = "nasa-modis-rapid-response-system"
     href = "/dataset/"
     update_url = "%s%s"%(url,href)
-    check_url = "%s%s"%(update_url, dataset_id)
-    if requests.get(check_url, verify=False).status_code == 200:
-        update_url = check_url
+#    check_url = "%s%s"%(update_url, dataset_id)
+#    if requests.get(check_url, verify=False).status_code == 200:
+#        update_url = check_url
     data = {
             'identifier': dataset_id,
             'description': "NASA MODIS Rapid Response System",
@@ -212,7 +213,7 @@ def update(url):
 
 
         #add dataset
-    dataset_id = "nasa-laads-mod021km-collection6"
+    dataset_id = "nasa-laads-mod021km-collection5"
     href = "/dataset/"
     update_url = "%s%s"%(url,href)
     check_url = "%s%s"%(update_url, dataset_id)
@@ -227,7 +228,7 @@ def update(url):
             'name': "MODIS/AQUA Calibrated Radiances L1B Swath 1km (Collection 006)",
             'lon_min': "-180",
             'lat_min': "-90",
-            'description': "MODIS image data at 1km (Nadir) resolution, calibrated from raw counts into physically meaningful radiances and reflectances. Corrections for known instrument effects are applied, include cross-talk between different bands. Data for the 500m and 250m bands are aggregated up to 1km resolution. Also includes quality flags, error estimates, and a 5km X 5km sub-sample of all geolocation data from the MYD03 files. ",
+            'description': "MODIS image data at 1km (Nadir) resolution, calibrated from raw counts into physically meaningful radiances and reflectances. Corrections for known instrument effects are applied, include cross-talk between different bands. Data for the 500m and 250m bands are aggregated up to 1km resolution. Also includes quality flags, error estimates, and a 5km X 5km sub-sample of all geolocation data from the MYD03 files.",
             }   
 
     r = gcis.s.post(update_url, data=json.dumps(data), verify=False)
